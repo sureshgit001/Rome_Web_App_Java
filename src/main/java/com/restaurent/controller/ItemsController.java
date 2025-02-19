@@ -72,5 +72,10 @@ public class ItemsController {
 		List<Items> items = itemsservice.getItemsBySubCatId(subCatId);
 		return ResponseEntity.ok(items);
 	}
+	@GetMapping("/users/items/byCat/{catId}")
+	public ResponseEntity<List<Items>> getItemsByCatId(@PathVariable Integer catId) {
+		List<Items> items = itemsservice.getItemsByCatId(catId);
+		return ResponseEntity.ok(items);
+	}
 
 }

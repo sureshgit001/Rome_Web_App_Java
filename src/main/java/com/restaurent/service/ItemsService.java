@@ -67,4 +67,9 @@ public class ItemsService {
 		List<Items> items=itemsrepo.findBySubCatSubId(subCatId);
 		return items;
 	}
+	
+	public List<Items> getItemsByCatId(Integer categoryId) {
+		List<Items> items=itemsrepo.findByCategoriesItemsCategoryId(categoryId);
+		return items;
+	}
 }

@@ -10,6 +10,9 @@ import com.restaurent.models.Items;
 @Repository
 public interface ItemsRepo extends JpaRepository<Items, Long> {
 
+
 	public List<Items> findBySubCatSubId(Integer subCatId);
+	public List<Items> findByCategoriesItemsCategoryId(Integer categoryId);
+
 
 }

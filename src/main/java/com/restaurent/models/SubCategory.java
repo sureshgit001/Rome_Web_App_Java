@@ -13,6 +13,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import lombok.AllArgsConstructor;
@@ -21,10 +22,11 @@ import lombok.NoArgsConstructor;
 
 @Entity
 @Table
-@JsonIgnoreProperties({"category","items"})
+//@JsonIgnoreProperties({"category","items"})
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler", "category", "items"})
 
 public class SubCategory {
 
@@ -36,60 +38,13 @@ public class SubCategory {
 
 	@ManyToOne(cascade = CascadeType.MERGE, fetch = FetchType.LAZY)
 	@JoinColumn(name = "cat_id")
+	@JsonBackReference
 	private Categories category;
+
 
 	@OneToMany(mappedBy = "subCat", cascade = CascadeType.MERGE, fetch = FetchType.LAZY)
 	private List<Items> items;
 
-//	public Integer getSubId() {
-//		return subId;
-//	}
-//
-//	public void setSubId(Integer subId) {
-//		this.subId = subId;
-//	}
-//
-//	public String getSubCatName() {
-//		return subCatName;
-//	}
-//
-//	public void setSubCatName(String subCatName) {
-//		this.subCatName = subCatName;
-//	}
-////
-////	public Categories getCategory() {
-////		return category;
-////	}
-////
-////	public void setCategory(Categories category) {
-////		this.category = category;
-////	}
-//
-//	public SubCategory(Integer subId, String subCatName) {
-//		super();
-//		this.subId = subId;
-//		this.subCatName = subCatName;
-//
-//	}
-//
-//	public Categories getCategory() {
-//		return category;
-//	}
-//
-//	public void setCategory(Categories category) {
-//		this.category = category;
-//	}
-//
-//	public List<Items> getItems() {
-//		return items;
-//	}
-//
-//	public void setItems(List<Items> items) {
-//		this.items = items;
-//	}
-//
-//	public SubCategory() {
-//
-//	}
+
 
 }

@@ -13,6 +13,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -24,6 +25,8 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 //@JsonIgnoreProperties({"subCatList","items"})
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler", "subCatList", "items"})
+
 public class Categories {
 
 	@Id
@@ -33,43 +36,12 @@ public class Categories {
 	private String categoryName;
 	private String categoryDescription;
 	
-	@OneToMany(mappedBy = "category")
+	@OneToMany(mappedBy = "category", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@JsonManagedReference
 	private List<SubCategory> subCatList;
 
 	@OneToMany(mappedBy = "categoriesItems", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	private List<Items> items;
 
-	/*
-	 * public String getCategoryDescription() { return categoryDescription; }
-	 * 
-	 * public void setCategoryDescription(String categoryDescription) {
-	 * this.categoryDescription = categoryDescription; }
-	 * 
-	 * public Integer getCategoryId() { return categoryId; }
-	 * 
-	 * public void setCategoryId(Integer categoryId) { this.categoryId = categoryId;
-	 * }
-	 * 
-	 * public String getCategoryName() { return categoryName; }
-	 * 
-	 * public void setCategoryName(String categoryName) { this.categoryName =
-	 * categoryName; }
-	 * 
-	 * public List<Items> getItems() { return items; }
-	 * 
-	 * public void setItems(List<Items> items) { this.items = items; }
-	 * 
-	 * @Override public String toString() { return "Categories [items=" + items +
-	 * "]"; }
-	 * 
-	 * public Categories(Integer categoryId, String categoryName, String
-	 * categoryDescription) {
-	 * 
-	 * this.categoryId = categoryId; this.categoryName = categoryName;
-	 * this.categoryDescription = categoryDescription; }
-	 * 
-	 * public Categories() {
-	 * 
-	 * }
-	 */
+	
 }

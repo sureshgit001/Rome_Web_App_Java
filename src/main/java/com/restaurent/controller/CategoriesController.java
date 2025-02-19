@@ -41,7 +41,7 @@ public class CategoriesController {
 	}
 
 	// GET CATEGORIES BY ID
-	@GetMapping("/users/categories{categoryId}")
+	@GetMapping("/users/categories/{categoryId}")
 	public ResponseEntity<Optional<Categories>> getItemsCategories(@PathVariable Integer categoryId) {
 		Optional<Categories> categoriesById = CategorysService.getCategoriesById(categoryId);
 
@@ -50,7 +50,7 @@ public class CategoriesController {
 	}
 
 	// UPDATE CATEGORIES
-	@PutMapping("/users/categories{categoryId}")
+	@PutMapping("/users/categories/{categoryId}")
 	public ResponseEntity<String> updateItemsCategories(@RequestBody Categories Categories,
 			@PathVariable Integer categoryId) {
 
@@ -61,7 +61,7 @@ public class CategoriesController {
 	}
 
 	// DELETE CATEGORIES
-	@DeleteMapping("/users/categories{categoryId}")
+	@DeleteMapping("/users/categories/{categoryId}")
 	public ResponseEntity<String> deleteCategoriesDetails(@PathVariable Integer categoryId) {
 		String deletecategories = (CategorysService.deleteCategories(categoryId)).toUpperCase();
 		return new ResponseEntity<String>(deletecategories, HttpStatus.CREATED);

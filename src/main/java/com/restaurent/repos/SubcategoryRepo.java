@@ -13,6 +13,8 @@ import com.restaurent.models.UserInfo;
 public interface SubcategoryRepo extends JpaRepository<SubCategory, Integer> {
 	@Query("SELECT s FROM SubCategory s WHERE s.category.categoryId = :catId")
 	public List<SubCategory> findByCategoryCatId(Integer catId);
+	
+	//public List<SubCategory> findByCategoryCategoryId(Integer categoryId);
 
 	
 
